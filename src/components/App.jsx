@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { nanoid } from 'nanoid';
 import toast, { Toaster } from 'react-hot-toast';
-// import { Container, GlobalStyles, LoadMoreButton } from './GlobalStyle';
-// import { SearchBar } from './SearchBar/SearchBar';
+import { Container, GlobalStyles, LoadMoreButton } from './GlobalStyle';
+import { SearchBar } from './SearchBar/SearchBar';
 import { ImageGallery } from './ImageGallery/ImageGallery';
 import { fetchImages } from 'api';
 import { BarLoader } from 'react-spinners';
@@ -68,23 +68,23 @@ export class App extends Component {
 
   render() {
     const { page, perPage, images, loading, totalHits } = this.state;
-    // const totalPages = Math.ceil(totalHits / perPage);
+    const totalPages = Math.ceil(totalHits / perPage);
 
     return (
-      <>
-        {/* <SearchBar changeQuery={this.changeQuery} /> */}
+      <Container>
+        <SearchBar changeQuery={this.changeQuery} />
         <ImageGallery images={images} />
 
-        {/* {totalHits !== null && totalPages !== page && (
+        {totalHits !== null && totalPages !== page && (
           <LoadMoreButton type="button" onClick={this.loadMoreHandler}>
             Load More
           </LoadMoreButton>
-        )} */}
+        )}
 
         {loading && <BarLoader color="#3f51b5" width="100%" />}
         <Toaster />
-        {/* <GlobalStyles /> */}
-      </>
+        <GlobalStyles />
+      </Container>
     );
   }
 }
